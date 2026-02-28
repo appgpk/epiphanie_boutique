@@ -12,8 +12,8 @@
 
 <!-- Desktop fallback buttons (optional but recommended) -->
 <div style="margin-top: 10px;">
-  <button type="button" id="left-btn">⬅️ Left</button>
-  <button type="button" id="right-btn">Right ➡️</button>
+  <button type="button" id="left-btn">⬅️ Je n'aime pas</button>
+  <button type="button" id="right-btn">J'aime ➡️</button>
 </div>
 
 <!-- Real oTree submit button (hide it) -->
@@ -27,8 +27,7 @@
   const formEl = document.querySelector('form');  // oTree wraps content in a <form>
 
   function submitChoice(val) {
-    choiceInput.value = val;
-    formEl.submit();
+     liveSend({ like: val });
   }
 
   // Desktop buttons
