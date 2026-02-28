@@ -60,7 +60,33 @@ class Player(BasePlayer):
         ],
         blank=True
     )
+    purchase_factors = models.LongStringField(
+    label="Selon vous, quels sont les principaux facteurs qui influencent votre décision d’acheter ou non une paire de chaussures ?",
+    blank=True)
 
+    price_too_expensive = models.IntegerField(
+        label="À partir de quel prix considérez-vous qu’une paire de chaussures devient trop chère ?",
+        choices=[
+            [1, "5 000 FCFA"],
+            [2, "10 000 FCFA"],
+            [3, "15 000 FCFA"],
+            [4, "20 000 FCFA"],
+            [5, "Plus de 20 000 FCFA"],
+            [6, "Je préfère ne pas répondre"],
+        ],
+        blank=True
+    )
+    purchase_barrier = models.LongStringField(
+    label="Quel est le principal facteur qui peut vous empêcher d’acheter une paire de chaussures qui vous plaît ? "
+          "(Par exemple : le prix, la qualité, la pointure, le style, la durabilité, etc.)",
+    blank=True
+)
+
+    purchase_priority = models.LongStringField(
+        label="Qu’est-ce qui est le plus important pour vous lorsque vous choisissez une paire de chaussures ? "
+              "(Par exemple : le confort, le prix, la qualité, le design, la marque, etc.)",
+        blank=True
+    )
 class Introduction(Page):
     @staticmethod
     def is_displayed(player: Player):
@@ -68,7 +94,7 @@ class Introduction(Page):
         
 class Demographics(Page):
     form_model = 'player'
-    form_fields = ['age', 'gender', 'city', 'shoe_size', 'budget', 'frequency']
+    form_fields = ['age', 'gender', 'city', 'shoe_size', 'budget', 'frequency', 'purchase_factors', 'price_too_expensive', 'purchase_barrier', 'purchase_priority']
 
     @staticmethod
     def is_displayed(player: Player):
