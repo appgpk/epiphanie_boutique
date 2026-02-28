@@ -33,7 +33,6 @@ class Player(BasePlayer):
 
     shoe_size = models.IntegerField(
         label="Quelle est votre pointure ?",
-        choices=[str(x) for x in range(35, 46)] + ["Je ne sais pas / Je préfère ne pas répondre"],
         blank=True
     )
 
