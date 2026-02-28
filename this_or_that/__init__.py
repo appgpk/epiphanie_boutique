@@ -12,12 +12,9 @@ class Subsession(BaseSubsession):
 
 class Group(BaseGroup):
     pass
-
+    
 class Player(BasePlayer):
-    choice = models.IntegerField(
-        choices=[[1, 'A'], [2, 'B']],
-        widget=widgets.RadioSelect
-    )
+    like = models.IntegerField()  
 
 class MakeChoice(Page):
     form_model = 'player'
@@ -26,5 +23,8 @@ class MakeChoice(Page):
     def vars_for_template(player: Player):
         image_path = 'shoes/shoe{}.jpg'.format(player.round_number)
         return dict(image_path=image_path)
+     def live_method(player: Player, data):
+        if 'like' in data:
+            player.like = data['like']
 
 page_sequence = [MakeChoice]
