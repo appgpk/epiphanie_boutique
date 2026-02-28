@@ -8,7 +8,7 @@
 </div>
 
 <!-- Hidden field submitted to oTree -->
-<input type="hidden" name="choice" id="choice-input">
+<input type="hidden" name="like" id="like">
 
 <!-- Desktop fallback buttons (optional but recommended) -->
 <div style="margin-top: 10px;">
@@ -23,12 +23,14 @@
 
 <script>
   const imgElement = document.getElementById('swipe-img');
-  const choiceInput = document.getElementById('choice-input');
+  const choiceInput = document.getElementById('like');
   const formEl = document.querySelector('form');  // oTree wraps content in a <form>
 
   function submitChoice(val) {
-     liveSend({ like: val });
+    choiceInput.value = val;
+    formEl.submit();
   }
+
 
   // Desktop buttons
   document.getElementById('left-btn').addEventListener('click', () => submitChoice(1));
