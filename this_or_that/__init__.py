@@ -23,6 +23,12 @@ class MakeChoice(Page):
     def vars_for_template(player: Player):
         image_path = 'shoes/shoe{}.jpg'.format(player.round_number)
         return dict(image_path=image_path)
+        
+    @staticmethod
+    def live_method(player: Player, data):
+        if 'like' in data:
+            player.like = data['like']
+
 
 
 page_sequence = [MakeChoice]
