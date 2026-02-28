@@ -39,12 +39,12 @@ class Player(BasePlayer):
     budget = models.StringField(
         label="Quel budget mettez-vous en général pour une paire de chaussures ?",
         choices=[
-            "Moins de 5 000 FCFA",
-            "5 000 – 10 000 FCFA",
-            "10 000 – 15 000 FCFA",
-            "15 000 – 25 000 FCFA",
-            "Plus de 25 000 FCFA",
-            "Je préfère ne pas répondre",
+            [1,"Moins de 5 000 FCFA"],
+            [2,"5 000 – 10 000 FCFA"],
+            [3,"10 000 – 15 000 FCFA"],
+            [4,"15 000 – 25 000 FCFA"],
+            [5,"Plus de 25 000 FCFA"],
+            [6,"Je préfère ne pas répondre"],
         ],
         blank=True
     )
@@ -52,11 +52,11 @@ class Player(BasePlayer):
     frequency = models.StringField(
         label="À quelle fréquence achetez-vous des chaussures ?",
         choices=[
-            "1 fois par an",
-            "2–3 fois par an",
-            "1 fois par mois",
-            "Plus d’1 fois par mois",
-            "Je préfère ne pas répondre",
+            [1,"1 fois par an"],
+            [2,"2–3 fois par an"],
+            [3,"1 fois par mois"],
+            [4,"Plus d’1 fois par mois"],
+            [5,"Je préfère ne pas répondre"],
         ],
         blank=True
     )
