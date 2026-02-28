@@ -20,10 +20,12 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     choice = models.IntegerField()
 def vars_for_template(player: Player):
-    return dict(
-            image_path='shoes/shoe{}.jpg'.format(player.round_number)
-        )
-    
+    @staticmethod
+    image_path='shoes/shoe{}.jpg'.format(player.round_number)
+
+    return dict(image_path=image_path)
+
+
 class MakeChoice(Page):
     form_model = 'player'
     
