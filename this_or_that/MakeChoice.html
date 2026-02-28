@@ -7,42 +7,49 @@
   <img id="swipe-img" src="{{ static image_path }}" style="width:100%; height:auto;"/>
 </div>
 
-<!-- Hidden input that stores choice -->
+<!-- Hidden field submitted to oTree -->
 <input type="hidden" name="choice" id="choice-input">
 
-<button id="next-btn" class="otree-btn-next btn btn-primary" style="display:none;">
-  Next
-</button>
+<!-- Desktop fallback buttons (optional but recommended) -->
+<div style="margin-top: 10px;">
+  <button type="button" id="left-btn">⬅️ Left</button>
+  <button type="button" id="right-btn">Right ➡️</button>
+</div>
+
+<!-- Real oTree submit button (hide it) -->
+<div style="display:none;">
+  {{ next_button }}
+</div>
 
 <script>
   const imgElement = document.getElementById('swipe-img');
   const choiceInput = document.getElementById('choice-input');
-  const nextBtn = document.getElementById('next-btn');
+  const formEl = document.querySelector('form');  // oTree wraps content in a <form>
 
+  function submitChoice(val) {
+    choiceInput.value = val;
+    formEl.submit();
+  }
+
+  // Desktop buttons
+  document.getElementById('left-btn').addEventListener('click', () => submitChoice(1));
+  document.getElementById('right-btn').addEventListener('click', () => submitChoice(2));
+
+  // Touch swipe
   let touchstartX = 0;
   let touchendX = 0;
 
   imgElement.addEventListener('touchstart', e => {
-      touchstartX = e.changedTouches[0].screenX;
+    touchstartX = e.changedTouches[0].screenX;
   });
 
   imgElement.addEventListener('touchend', e => {
-      touchendX = e.changedTouches[0].screenX;
-      handleSwipe();
-  });
+    touchendX = e.changedTouches[0].screenX;
+    const dx = touchendX - touchstartX;
 
-  function handleSwipe() {
-      if (touchendX < touchstartX - 50) {
-          // Swipe left = choice 1
-          choiceInput.value = 1;
-          nextBtn.click();  // submit page
-      }
-      if (touchendX > touchstartX + 50) {
-          // Swipe right = choice 2
-          choiceInput.value = 2;
-          nextBtn.click();  // submit page
-      }
-  }
+    if (dx < -50) submitChoice(1); // swipe left
+    if (dx >  50) submitChoice(2); // swipe right
+  });
 </script>
 
 {{ endblock }}
