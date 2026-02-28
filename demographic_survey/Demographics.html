@@ -4,6 +4,16 @@
 {{ block content }}
 
 <style>
+  .next-btn {
+    background-color: #ffb6c1;   /* light pink */
+    border: none;
+    color: white;
+    padding: 10px 22px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
   .survey-bg {
     min-height: 70vh;
     display: flex;
@@ -47,7 +57,9 @@
     {{ formfields }}
 
     <div style="margin-top:20px;">
-      {{ next_button }}
+  <button class="next-btn">
+      Suivant
+  </button>
     </div>
 
   </div>
