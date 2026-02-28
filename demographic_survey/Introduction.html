@@ -3,19 +3,110 @@
 
 {{ block content }}
 
-<p>
-Merci de participer ❤️<br>
-On va te montrer des chaussures (une par une).<br>
-Pour chaque chaussure, clique :
-</p>
+<style>
+  /* Light pink background for the whole page */
+  .intro-bg {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: #fff2f6; /* very light pink */
+  }
 
-<ul>
-  <li><b>👍🏾 J’aime</b> si tu aimerais l’acheter</li>
-  <li><b>👎🏾 J’aime pas</b> si tu ne l’achèterais pas</li>
-</ul>
+  /* Pink card */
+  .intro-card {
+    width: 100%;
+    max-width: 700px;
+    background: #ffd6e5; /* light pink card */
+    border: 1px solid #f3a9c3;
+    border-radius: 18px;
+    padding: 22px 22px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
 
-<p>Ça prend moins de 2 minutes.</p>
+  .intro-card h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
 
-{{ next_button }}
+  .intro-card p, .intro-card li {
+    font-size: 16px;
+    line-height: 1.45;
+  }
+
+  .intro-card ul {
+    margin-top: 8px;
+  }
+
+  .note {
+    background: rgba(255,255,255,0.55);
+    border-radius: 12px;
+    padding: 10px 12px;
+    margin: 14px 0;
+  }
+
+  .btn-row {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0 4px 0;
+    flex-wrap: wrap;
+  }
+
+  .fake-btn {
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.12);
+    background: rgba(255,255,255,0.85);
+    font-weight: 600;
+  }
+</style>
+
+<div class="intro-bg">
+  <div class="intro-card">
+    <h2>Bienvenue 👋🏾</h2>
+
+    <p>
+      Merci de participer ❤️<br>
+      Ce questionnaire est une <b>petite étude de marché</b> pour nous aider à adapter le
+      <b>prochain stock de chaussures</b> aux préférences des clients.
+    </p>
+
+    <div class="note">
+      <p style="margin:0;">
+        <b>Comment ça se passe ?</b><br>
+        Le questionnaire est très simple et prend <b>moins de 2 minutes</b>.
+      </p>
+    </div>
+
+    <p><b>Partie 1 — Démographie</b></p>
+    <ul>
+      <li>Quelques questions (âge, ville, pointure, etc.).</li>
+      <li>Ce n’est <b>pas obligatoire</b> : réponds seulement si tu es à l’aise.</li>
+    </ul>
+
+    <p><b>Partie 2 — Photos de chaussures</b></p>
+    <ul>
+      <li>On te montrera environ <b>20 à 30</b> photos.</li>
+      <li>Pour chaque photo, indique si tu aimes ou pas :</li>
+    </ul>
+
+    <div class="btn-row">
+      <div class="fake-btn">⬅️ Je n’aime pas</div>
+      <div class="fake-btn">J’aime ➡️</div>
+    </div>
+
+    <p style="margin-top:10px;">
+      <b>Confidentialité :</b> tes réponses sont enregistrées de façon <b>anonyme</b> et serviront uniquement
+      à mieux choisir les modèles à importer.
+    </p>
+
+    <p style="margin-bottom: 14px;">
+      Merci beaucoup pour ton aide 🙏🏾
+    </p>
+
+    {{ next_button }}
+  </div>
+</div>
 
 {{ endblock }}
