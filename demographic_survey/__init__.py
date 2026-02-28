@@ -14,6 +14,27 @@ class Group(BaseGroup):
     pass
 
 class Player(BasePlayer):
+    age = models.IntegerField(label="Quel est votre âge ?")
+    gender = models.StringField(
+        label="Quel est votre genre ?",
+        choices=["Femme", "Homme", "Autre"]
+    )
+    city = models.StringField(
+        label="Dans quelle ville habitez-vous ?"
+    )
+
+    shoe_size = models.IntegerField(
+        label="Quelle est votre pointure ?"
+    )
+
+    buy_shoes = models.StringField(
+        label="À quelle fréquence achetez-vous des chaussures ?",
+        choices=[
+            "1 fois par an",
+            "2–3 fois par an",
+            "plus de 3 fois par an"
+        ]
+    )
 
 class Introduction(Page):
     @staticmethod
