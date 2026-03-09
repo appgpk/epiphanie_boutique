@@ -102,7 +102,6 @@ class Player(BasePlayer):
         choices=[1,2,3]
     )
     treatment = models.IntegerField()
-    like = models.IntegerField()  
 
 
 class Introduction(Page):
@@ -147,13 +146,5 @@ class Ranking(Page):
             player.participant.treatment = 3
 
 
-class MakeChoice(Page):
-    form_model = 'player'
-    form_fields = ['like']
 
-    @staticmethod
-    def vars_for_template(player: Player):
-        image_path = 'shoes/shoe{}.jpg'.format(player.round_number)
-        round = C.NUM_ROUNDS
-        return dict(image_path=image_path, round = round)
 page_sequence = [Introduction, Demographics, Ranking]
