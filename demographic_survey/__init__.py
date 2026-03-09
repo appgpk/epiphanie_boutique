@@ -101,6 +101,7 @@ class Player(BasePlayer):
         label= " ",
         choices=[1,2,3]
     )
+    treatment = models.IntegerField()
 class Introduction(Page):
     @staticmethod
     def is_displayed(player: Player):
