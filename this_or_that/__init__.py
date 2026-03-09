@@ -23,7 +23,10 @@ class MakeChoice(Page):
 
     @staticmethod
     def vars_for_template(player: Player):
-        image_path = 'shoes/shoe{}.jpg'.format(player.round_number)
+        if player.participant.treatment == 1 : 
+            image_path = 'shoes/shoe{}.jpg'.format(player.round_number)
+        else : 
+            image_path = 
         round = C.NUM_ROUNDS
         return dict(image_path=image_path, round = round)
         
