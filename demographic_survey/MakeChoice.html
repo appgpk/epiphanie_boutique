@@ -1,0 +1,107 @@
+{{ extends "global/Page.html" }}
+{{ block title }}Choix des chaussures nº {{ player.round_number }}{{ endblock }}
+
+{{ block content }}
+
+<style>
+.page-bg {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: #fff2f6;
+}
+
+.pink-card {
+  width: 100%;
+  max-width: 700px;
+  background: #ffd6e5;
+  border: 1px solid #f3a9c3;
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.img-wrap {
+  margin: 10px auto 16px auto;
+  background: rgba(255,255,255,0.65);
+  border-radius: 16px;
+  padding: 12px;
+  display: inline-block;
+  max-width: 520px;
+  width: 100%;
+}
+
+.img-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  margin: 0 auto;
+}
+
+.btn-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.choice-btn {
+  background-color: #ffb6c1;
+  border: 1px solid rgba(0,0,0,0.08);
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  min-width: 170px;
+}
+
+.choice-btn:hover {
+  background-color: #ff9fb3;
+}
+</style>
+
+<div class="page-bg">
+  <div class="pink-card">
+
+    <div class="img-wrap">
+      <img src="{{ static image_path }}" alt="Chaussure">
+    </div>
+
+    <!-- Hidden field -->
+    <input type="hidden" name="like" id="like">
+
+    <div class="btn-row">
+      <button type="button" class="choice-btn" onclick="submitChoice(1)">
+        👎🏾 Je n'aime pas
+      </button>
+
+      <button type="button" class="choice-btn" onclick="submitChoice(2)">
+        J'aime 👍🏾
+      </button>
+    </div>
+
+    <div style="display:none;">
+      {{ next_button }}
+    </div>
+
+  </div>
+</div>
+
+<script>
+const choiceInput = document.getElementById('like');
+const formEl = document.querySelector('form');
+
+function submitChoice(val){
+  choiceInput.value = val;
+  formEl.submit();
+}
+</script>
+
+{{ endblock }}
