@@ -121,6 +121,9 @@ class Ranking(Page):
     form_model = 'player'
     form_fields = ['rank1', 'rank2', 'rank3']
 
+    @staticmethod    
+    def is_displayed(player: Player):
+        return player.round_number == 1
     @staticmethod
     def error_message(player, values):
         print("Submitted values:", values)
