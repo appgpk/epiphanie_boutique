@@ -123,5 +123,17 @@ class Ranking(Page):
 
         if len(set(ranks)) != 3:
             return "Chaque modèle doit avoir un rang unique."
+            
+    @staticmethod
+    def before_next_page(player, timeout_happened):
+
+        if player.rank1 == 1:
+            player.participant.treatment = 1
+
+        elif player.rank2 == 1:
+            player.participant.treatment = 2
+
+        elif player.rank3 == 1:
+            player.participant.treatment = 3
         
 page_sequence = [Introduction, Demographics, Ranking]
