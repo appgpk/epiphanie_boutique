@@ -118,7 +118,7 @@ class Ranking(Page):
         return player.round_number == 1   
     @staticmethod
     def error_message(player, values):
-        ranks = [values['player.rank3'], values['player.rank2'], values['player.rank3']]
+        ranks = [values['rank3'], values['rank2'], values['rank3']]
         if len(set(ranks)) != 3:
             return "Each picture must have a unique rank."
         
