@@ -112,13 +112,15 @@ class Demographics(Page):
 
 class Ranking(Page):
     form_model = 'player'
-    form_fields = ['rank1','rank2','rank3']
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.round_number == 1   
+    form_fields = ['rank1', 'rank2', 'rank3']
+
     @staticmethod
     def error_message(player, values):
-        ranks = [values['rank3'], values['rank2'], values['rank3']]
+        print("Submitted values:", values)
+        ranks = [values['rank1'], values['rank2'], values['rank3']]
+        print("Ranks:", ranks)
+        print("Unique ranks:", set(ranks))
+
         if len(set(ranks)) != 3:
             return "Each picture must have a unique rank."
         
