@@ -26,7 +26,7 @@ class MakeChoice(Page):
         if player.participant.treatment == 1 : 
             image_path = 'shoes/shoe{}.jpg'.format(player.round_number)
         else : 
-            image_path = 
+            image_path = None
         round = C.NUM_ROUNDS
         return dict(image_path=image_path, round = round)
         
