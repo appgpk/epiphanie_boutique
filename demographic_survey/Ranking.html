@@ -1,0 +1,82 @@
+{{ extends "global/Page.html" }}
+{{ block title }}Choisissez votre type de chaussure préférée{{ endblock }}
+
+{{ block content }}
+
+<style>
+  .next-btn {
+    background-color: #ffb6c1;   /* light pink */
+    border: none;
+    color: white;
+    padding: 10px 22px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .survey-bg {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: #fff2f6;
+  }
+
+  .survey-card {
+    width: 100%;
+    max-width: 700px;
+    background: #ffd6e5;
+    border: 1px solid #f3a9c3;
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+
+  .survey-card p {
+    font-size: 16px;
+    line-height: 1.45;
+  }
+
+  .note {
+    background: rgba(255,255,255,0.6);
+    border-radius: 12px;
+    padding: 10px 12px;
+    margin-bottom: 15px;
+  }
+
+  .otree-form-group {
+    margin-bottom: 12px;
+  }
+</style>
+
+<div class="survey-bg">
+  <div class="survey-card">
+
+    <div>
+        <img src="{% static 'img/pic1.jpg' %}" width="200">
+        {{ formfield 'rank_pic1' }}
+    </div>
+    
+    <div>
+        <img src="{% static 'img/pic2.jpg' %}" width="200">
+        {{ formfield 'rank_pic2' }}
+    </div>
+    
+    <div>
+        <img src="{% static 'img/pic3.jpg' %}" width="200">
+        {{ formfield 'rank_pic3' }}
+    </div>
+
+
+    <div style="margin-top:20px;">
+  <button class="next-btn">
+      Suivant
+  </button>
+    </div>
+
+  </div>
+</div>
+
+{{ endblock }}
+
