@@ -122,6 +122,6 @@ class Ranking(Page):
         print("Unique ranks:", set(ranks))
 
         if len(set(ranks)) != 3:
-            return "Each picture must have a unique rank."
+            return "Chaque modèle doit avoir un rang unique."
         
 page_sequence = [Introduction, Demographics, Ranking]
