@@ -88,14 +88,17 @@ class Player(BasePlayer):
         blank=True
     )
     rank1 = models.IntegerField(
+        label= " ",
         choices=[1,2,3]
     )
 
     rank2 = models.IntegerField(
+        label= " ",
         choices=[1,2,3]
     )
 
     rank3 = models.IntegerField(
+        label= " ",
         choices=[1,2,3]
     )
 class Introduction(Page):
