@@ -87,6 +87,17 @@ class Player(BasePlayer):
               "(Par exemple : le confort, le prix, la qualité, le design, la marque, etc.)",
         blank=True
     )
+    rank1 = models.IntegerField(
+        choices=[1,2,3]
+    )
+
+    rank2 = models.IntegerField(
+        choices=[1,2,3]
+    )
+
+    rank3 = models.IntegerField(
+        choices=[1,2,3]
+    )
 class Introduction(Page):
     @staticmethod
     def is_displayed(player: Player):
@@ -95,9 +106,20 @@ class Introduction(Page):
 class Demographics(Page):
     form_model = 'player'
     form_fields = ['age', 'gender', 'city', 'shoe_size', 'budget', 'frequency', 'purchase_factors', 'price_too_expensive', 'purchase_barrier', 'purchase_priority']
-
     @staticmethod
     def is_displayed(player: Player):
         return player.round_number == 1
 
-page_sequence = [Introduction, Demographics]
+class Ranking(Page):
+    form_model = 'player'
+    form_fields = ['rank1','rank2','rank3']
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number == 1   
+    @staticmethod
+    def error_message(player, values):
+        ranks = [values['player.rank3'], values['player.rank2'], values['player.rank3']]
+        if len(set(ranks)) != 3:
+            return "Each picture must have a unique rank."
+        
+page_sequence = [Introduction, Demographics, Ranking]
