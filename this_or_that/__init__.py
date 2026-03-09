@@ -15,6 +15,7 @@ class Group(BaseGroup):
     
 class Player(BasePlayer):
     like = models.IntegerField()  
+    treatment = models.IntegerField()  
 
 class MakeChoice(Page):
     form_model = 'player'
