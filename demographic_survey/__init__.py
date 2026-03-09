@@ -135,13 +135,13 @@ class Ranking(Page):
     def before_next_page(player, timeout_happened):
 
         if player.rank1 == 1:
-            player.treatment = 1
+            player.participant.treatment = 1
 
         elif player.rank2 == 1:
-            player.treatment = 2
+            player.participant.treatment = 2
 
         elif player.rank3 == 1:
-            player.treatment = 3
+            player.participant.treatment = 3
 
 
 class MakeChoice(Page):
@@ -153,4 +153,4 @@ class MakeChoice(Page):
         image_path = 'shoes/shoe{}.jpg'.format(player.round_number)
         round = C.NUM_ROUNDS
         return dict(image_path=image_path, round = round)
-page_sequence = [Introduction, Demographics, Ranking,MakeChoice]
+page_sequence = [Introduction, Demographics, Ranking]
