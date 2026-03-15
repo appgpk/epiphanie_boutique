@@ -131,7 +131,7 @@ class Ranking(Page):
     @staticmethod
     def error_message(player, values):
         print("Submitted values:", values)
-        ranks = [values['rank1'], values['rank2'], values['rank3']]
+        ranks = [values['rank1'], values['rank2'], values['rank3'], values['rank4']]
         print("Ranks:", ranks)
         print("Unique ranks:", set(ranks))
 
