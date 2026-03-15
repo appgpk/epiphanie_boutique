@@ -140,18 +140,23 @@ class Ranking(Page):
             
     @staticmethod
     def before_next_page(player, timeout_happened):
-
-        if player.rank1 == 1:
+        if (player.rank1 == 1 and player.rank2 == 2) or (player.rank1 == 2 and player.rank2 == 1):
             player.treatment = 1
 
-        elif player.rank2 == 1:
+        elif (player.rank1 == 1 and player.rank3 == 2) or (player.rank1 == 2 and player.rank3 == 1):
             player.treatment = 2
-
-        elif player.rank3 == 1:
+        
+        elif (player.rank1 == 1 and player.rank4 == 2) or (player.rank1 == 2 and player.rank4 == 1):
             player.treatment = 3
-            
-        elif player.rank4 == 1:
+        
+        elif (player.rank2 == 1 and player.rank3 == 2) or (player.rank2 == 2 and player.rank3 == 1):
             player.treatment = 4
+        
+        elif (player.rank2 == 1 and player.rank4 == 2) or (player.rank2 == 2 and player.rank4 == 1):
+            player.treatment = 5
+        
+        elif (player.rank3 == 1 and player.rank4 == 2) or (player.rank3 == 2 and player.rank4 == 1):
+            player.treatment = 6
          
         player.participant.vars['treatment'] = player.treatment
 
