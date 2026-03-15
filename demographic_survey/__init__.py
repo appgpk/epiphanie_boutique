@@ -89,17 +89,22 @@ class Player(BasePlayer):
     )
     rank1 = models.IntegerField(
         label= " ",
-        choices=[1,2,3]
+        choices=[1,2,3,4]
     )
 
     rank2 = models.IntegerField(
         label= " ",
-        choices=[1,2,3]
+        choices=[1,2,3,4]
     )
 
     rank3 = models.IntegerField(
         label= " ",
-        choices=[1,2,3]
+        choices=[1,2,3,4]
+    )
+    
+    rank4 = models.IntegerField(
+        label= " ",
+        choices=[1,2,3,4]
     )
     treatment = models.IntegerField()
 
@@ -118,7 +123,7 @@ class Demographics(Page):
 
 class Ranking(Page):
     form_model = 'player'
-    form_fields = ['rank1', 'rank2', 'rank3']
+    form_fields = ['rank1', 'rank2', 'rank3', 'rank4']
 
     @staticmethod    
     def is_displayed(player: Player):
@@ -130,7 +135,7 @@ class Ranking(Page):
         print("Ranks:", ranks)
         print("Unique ranks:", set(ranks))
 
-        if len(set(ranks)) != 3:
+        if len(set(ranks)) != 4:
             return "Chaque modèle doit avoir un rang unique."
             
     @staticmethod
@@ -144,6 +149,9 @@ class Ranking(Page):
 
         elif player.rank3 == 1:
             player.treatment = 3
+            
+        elif player.rank4 == 1:
+            player.treatment = 4
          
         player.participant.vars['treatment'] = player.treatment
 
