@@ -4,7 +4,6 @@
 {{ block content }}
 
 <style>
-
 .next-btn {
   background-color: #ffb6c1;
   border: none;
@@ -34,33 +33,33 @@
   box-shadow: 0 8px 24px rgba(0,0,0,0.08);
 }
 
-/* GRID 2x2 */
 .shoe-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
 
-/* each item */
 .shoe-item {
   text-align: center;
 }
 
-/* square images */
 .shoe-item img {
   width: 100%;
-  aspect-ratio: 1/1;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 12px;
 }
-
+.shoe-item:last-child {
+  grid-column: 1 / span 2;
+  max-width: 50%;
+  margin: 0 auto;
+}
 </style>
 
 <div class="survey-bg">
   <div class="survey-card">
 
     <div class="shoe-grid">
-
       <div class="shoe-item">
         <img src="{% static 'shoes/first_shoes/shoes01.png' %}">
         {{ formfield 'rank1' }}
@@ -81,17 +80,14 @@
         {{ formfield 'rank4' }}
       </div>
 
-       <div class="shoe-item">
+      <div class="shoe-item">
         <img src="{% static 'shoes/first_shoes/shoes05.png' %}">
         {{ formfield 'rank5' }}
       </div>
-      
     </div>
 
     <div style="margin-top:20px;">
-      <button class="next-btn">
-        Suivant
-      </button>
+      {{ next_button }}
     </div>
 
   </div>
