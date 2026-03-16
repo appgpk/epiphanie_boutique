@@ -1,3 +1,4 @@
+
 from otree.api import *
 import itertools
 
@@ -30,7 +31,7 @@ STYLE_IMAGES = {
         'shoes/mules/low_kitten/stiletto/shoes03.png',
         'shoes/mules/low_kitten/stiletto/shoes04.png',
         'shoes/mules/low_kitten/stiletto/shoes05.png',
-        'shoes/mules/low_kitten/stiletto/shoes-6.png',
+        'shoes/mules/low_kitten/stiletto/shoes06.png',
         'shoes/mules/medium/block/shoes01.png',
         'shoes/mules/medium/block/shoes02.png',
         'shoes/mules/medium/block/shoes03.png',
