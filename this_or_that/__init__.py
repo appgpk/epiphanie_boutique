@@ -293,26 +293,7 @@ class C(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-    def creating_session(self):
-        for player in self.get_players():
-            treatment = player.participant.vars.get('treatment')
-            
-            # 🔍 DEBUG — à supprimer après
-            print(f">>> participant: {player.participant.code}")
-            print(f">>> treatment: {treatment}")
-            print(f">>> participant.vars complet: {player.participant.vars}")
-            
-            if treatment is None:
-                raise ValueError(f"treatment manquant pour participant {player.participant.code}")
-            
-            pairs = generate_pairs_for_treatment(treatment)
-            
-            # 🔍 DEBUG
-            print(f">>> nombre de paires générées: {len(pairs)}")
-            
-            player.participant.vars['pairs'] = pairs
-            player.participant.vars['current_pair_index'] = 0
-
+    pass
 
 class Group(BaseGroup):
     pass
@@ -328,20 +309,32 @@ class Player(BasePlayer):
 
 
 # ── Pages ─────────────────────────────────────────────────────────────────────
-
 class MakeChoice(Page):
     form_model  = 'player'
     form_fields = ['choice']
 
     def is_displayed(self):
+        # Initialiser les paires au premier affichage
+        if 'pairs' not in self.participant.vars:
+            treatment = self.participant.vars.get('treatment')
+            if treatment is None:
+                return False  # sécurité
+            pairs = generate_pairs_for_treatment(treatment)
+            self.participant.vars['pairs']               = pairs
+            self.participant.vars['current_pair_index'] = 0
+
         idx   = self.participant.vars.get('current_pair_index', 0)
         pairs = self.participant.vars.get('pairs', [])
         return idx < len(pairs)
 
     def vars_for_template(self):
         idx  = self.participant.vars['current_pair_index']
-        pair = self.participant.vars['pairs'][idx]
+        pairs = self.participant.vars['pairs']
 
+        if not pairs or idx >= len(pairs):
+            return {}
+
+        pair = pairs[idx]
         self.player.image_path_1 = pair['path_1']
         self.player.image_path_2 = pair['path_2']
         self.player.style_1      = pair['style_1']
@@ -353,7 +346,7 @@ class MakeChoice(Page):
             'style_1_name': STYLE_NAMES[pair['style_1']],
             'style_2_name': STYLE_NAMES[pair['style_2']],
             'current':      idx + 1,
-            'total':        len(self.participant.vars['pairs']),
+            'total':        len(pairs),
         }
 
     def before_next_page(self, timeout_happened):
