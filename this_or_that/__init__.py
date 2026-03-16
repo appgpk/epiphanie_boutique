@@ -312,23 +312,23 @@ class MakeChoice(Page):
     form_model  = 'player'
     form_fields = ['choice']
 
-    def is_displayed(self):
+    def is_displayed(player):
         # Initialiser les paires au premier affichage
-        if 'pairs' not in self.participant.vars:
-            treatment = self.participant.vars.get('treatment')
+        if 'pairs' not in player.participant.vars:
+            treatment = player.participant.vars.get('treatment')
             if treatment is None:
                 return False  # sécurité
             pairs = generate_pairs_for_treatment(treatment)
-            self.participant.vars['pairs']               = pairs
-            self.participant.vars['current_pair_index'] = 0
+            player.participant.vars['pairs']               = pairs
+            player.participant.vars['current_pair_index'] = 0
 
-        idx   = self.participant.vars.get('current_pair_index', 0)
-        pairs = self.participant.vars.get('pairs', [])
+        idx   = player.participant.vars.get('current_pair_index', 0)
+        pairs = player.participant.vars.get('pairs', [])
         return idx < len(pairs)
 
-    def vars_for_template(self):
-        idx  = self.participant.vars['current_pair_index']
-        pairs = self.participant.vars['pairs']
+    def vars_for_template(player):
+        idx  = player.participant.vars['current_pair_index']
+        pairs = player.participant.vars['pairs']
 
         if not pairs or idx >= len(pairs):
             return {}
@@ -349,7 +349,7 @@ class MakeChoice(Page):
         }
 
     def before_next_page(self, timeout_happened):
-        self.participant.vars['current_pair_index'] += 1
+        player.participant.vars['current_pair_index'] += 1
 
 
 page_sequence = [MakeChoice]
