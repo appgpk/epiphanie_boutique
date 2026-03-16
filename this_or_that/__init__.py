@@ -296,9 +296,20 @@ class Subsession(BaseSubsession):
     def creating_session(self):
         for player in self.get_players():
             treatment = player.participant.vars.get('treatment')
+            
+            # 🔍 DEBUG — à supprimer après
+            print(f">>> participant: {player.participant.code}")
+            print(f">>> treatment: {treatment}")
+            print(f">>> participant.vars complet: {player.participant.vars}")
+            
             if treatment is None:
                 raise ValueError(f"treatment manquant pour participant {player.participant.code}")
+            
             pairs = generate_pairs_for_treatment(treatment)
+            
+            # 🔍 DEBUG
+            print(f">>> nombre de paires générées: {len(pairs)}")
+            
             player.participant.vars['pairs'] = pairs
             player.participant.vars['current_pair_index'] = 0
 
