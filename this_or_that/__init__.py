@@ -348,7 +348,7 @@ class MakeChoice(Page):
             'total':        len(pairs),
         }
 
-    def before_next_page(self, timeout_happened):
+    def before_next_page(player, timeout_happened):
         player.participant.vars['current_pair_index'] += 1
 
 
