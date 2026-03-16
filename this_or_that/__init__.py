@@ -352,4 +352,4 @@ class MakeChoice(Page):
         self.participant.vars['current_pair_index'] += 1
 
 
-page_sequence = [MakeChoice] * 5000
+page_sequence = [MakeChoice]
