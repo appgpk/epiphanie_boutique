@@ -27,7 +27,7 @@ class MakeChoice(Page):
 
     @staticmethod
     def vars_for_template(player: Player):
-        if player.participant.treatment == 1 : 
+        if player.participant.vars['treatment'] == 1 : 
             image_path_1 = 'shoes/ballerines/shoe{}.jpg'.format(player.round_number)
             image_path_2 = 'shoes/mocassins/shoe{}.jpg'.format(player.round_number)
         else : 
