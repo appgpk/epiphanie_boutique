@@ -334,10 +334,10 @@ class MakeChoice(Page):
             return {}
 
         pair = pairs[idx]
-        self.player.image_path_1 = pair['path_1']
-        self.player.image_path_2 = pair['path_2']
-        self.player.style_1      = pair['style_1']
-        self.player.style_2      = pair['style_2']
+        player.image_path_1 = pair['path_1']
+        player.image_path_2 = pair['path_2']
+        player.style_1      = pair['style_1']
+        player.style_2      = pair['style_2']
 
         return {
             'image_path_1': pair['path_1'],
