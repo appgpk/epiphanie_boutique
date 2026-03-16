@@ -241,69 +241,38 @@ class C(BaseConstants):
         'slingback/medium/very-high/stiletto/category-2/shoes07.png'],
 }
 
-PAIRS_TREATMENT_1 = [
-    (1, 3),
-    (1, 4),
-    (1, 5),
-    (2, 3),
-    (2, 4),
-    (2, 5),
-]
-
 
 class Subsession(BaseSubsession):
     pass
 
-
 class Group(BaseGroup):
     pass
-
-
     
 class Player(BasePlayer):
-    treatment = models.IntegerField(initial=1)
-
-    choice = models.IntegerField(
-        choices=[
-            [1, 'Je préfère le style de gauche'],
-            [2, 'Je préfère le style de droite'],
-        ],
-        widget=widgets.RadioSelectHorizontal,
-        label=' ',
-    )
-
+    like = models.IntegerField()  
+    treatment = models.IntegerField()
+    choice = models.IntegerField(choices=[[1, 'Je préfère le style de gauche'],[2, 'Je préfère le style de droite']],
+        widget=widgets.RadioSelectHorizontal, label =" ")
     style_left = models.IntegerField(blank=True)
     style_right = models.IntegerField(blank=True)
 
-
 class MakeChoice(Page):
     form_model = 'player'
-    form_fields = ['choice']
+    form_fields = ['like']
 
     @staticmethod
     def vars_for_template(player: Player):
-        treatment = player.treatment
+        if player.participant.treatment == 1 : 
+            image_path = 'shoes/shoe{}.jpg'.format(player.round_number)
+        else : 
+            image_path = None
+        round = C.NUM_ROUNDS
+        return dict(image_path=image_path, round = round)
+        
 
-        if treatment == 1:
-            style_a, style_b = PAIRS_TREATMENT_1[player.round_number - 1]
-        else:
-            style_a, style_b = None, None
 
-        if style_a is not None and style_b is not None:
-            if not player.style_left and not player.style_right:
-                if random.choice([True, False]):
-                    player.style_left = style_a
-                    player.style_right = style_b
-                else:
-                    player.style_left = style_b
-                    player.style_right = style_a
-
-        return dict(
-            left_images=STYLE_IMAGES.get(player.style_left, []),
-            right_images=STYLE_IMAGES.get(player.style_right, []),
-            round_number=player.round_number,
-            num_rounds=C.NUM_ROUNDS,
-        )
 
 
 page_sequence = [MakeChoice]
+
+
