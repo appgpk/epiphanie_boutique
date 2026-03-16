@@ -5,7 +5,7 @@ doc = ''
 class C(BaseConstants):
     NAME_IN_URL = 'demographic_survey'
     PLAYERS_PER_GROUP = None
-    NUM_ROUNDS = 10
+    NUM_ROUNDS = 1
 
 class Subsession(BaseSubsession):
     pass
