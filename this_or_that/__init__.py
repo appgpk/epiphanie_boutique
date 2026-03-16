@@ -299,7 +299,7 @@ class Subsession(BaseSubsession):
             if treatment is None:
                 raise ValueError(f"treatment manquant pour participant {player.participant.code}")
             pairs = generate_pairs_for_treatment(treatment)
-            player.participant.vars['pairs']               = pairs
+            player.participant.vars['pairs'] = pairs
             player.participant.vars['current_pair_index'] = 0
 
 
