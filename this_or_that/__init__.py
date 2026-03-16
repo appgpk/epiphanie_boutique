@@ -23,7 +23,7 @@ class Player(BasePlayer):
 
 class MakeChoice(Page):
     form_model = 'player'
-    form_fields = ['like']
+    form_fields = ['choice']
 
     @staticmethod
     def vars_for_template(player: Player):
