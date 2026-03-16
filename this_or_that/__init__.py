@@ -5,11 +5,289 @@ doc = ''
 class C(BaseConstants):
     NAME_IN_URL = 'this_or_that'
     PLAYERS_PER_GROUP = None
-    NUM_ROUNDS = 4
+    NUM_ROUNDS = 1
+    STYLE_IMAGES = {1: ['shoes/ballerines/shoes01.png',
+        'shoes/ballerines/shoes02.png',
+        'shoes/ballerines/shoes03.png',
+        'shoes/ballerines/shoes04.png',
+        'shoes/ballerines/shoes05.png'],
+        
+        2: ['shoes/mocassins/shoes01.png',
+            'shoes/mocassins/shoes02.png',
+            'shoes/mocassins/shoes03.png',
+            'shoes/mocassins/shoes04.png'],
+        
+        3: ['shoes/mules/high/wedge/shoes01.png',
+            'shoes/mules/high/wedge/shoes02.png',
+            'shoes/mules/low_kitten/kitten/shoes01.png',
+            'shoes/mules/low_kitten/kitten/shoes02.png',
+            'shoes/mules/low_kitten/kitten/shoes03.png',
+            'shoes/mules/low_kitten/kitten/shoes04.png',
+            'shoes/mules/low_kitten/kitten/shoes05.png',
+            'shoes/mules/low_kitten/kitten/shoes06.png',
+            'shoes/mules/low_kitten/stiletto/shoes01.png',
+            'shoes/mules/low_kitten/stiletto/shoes02.png',
+            'shoes/mules/low_kitten/stiletto/shoes03.png',
+            'shoes/mules/low_kitten/stiletto/shoes04.png',
+            'shoes/mules/low_kitten/stiletto/shoes05.png',
+            'shoes/mules/low_kitten/stiletto/shoes-6.png',
+            'shoes/mules/medium/block/shoes01.png',
+            'shoes/mules/medium/block/shoes02.png',
+            'shoes/mules/medium/block/shoes03.png',
+            'shoes/mules/medium/block/shoes04.png',
+            'shoes/mules/medium/block/shoes05.png',
+            'shoes/mules/medium/block/shoes06.png',
+            'shoes/mules/medium/block/shoes07.png',
+            'shoes/mules/medium/block/shoes08.png',
+            'shoes/mules/medium/block/shoes09.png',
+            'shoes/mules/medium/block/shoes10.png',
+            'shoes/mules/medium/block/shoes11.png',
+            'shoes/mules/medium/block/shoes12.png',
+            'shoes/mules/medium/block/shoes13.png',
+            'shoes/mules/medium/block/shoes14.png',
+            'shoes/mules/medium/spool/shoes01.png',
+            'shoes/mules/medium/spool/shoes02.png',
+            'shoes/mules/medium/stiletto/shoes01.png',
+            'shoes/mules/medium/stiletto/shoes02.png',
+            'shoes/mules/medium/stiletto/shoes03.png',
+            'shoes/mules/medium/stiletto/shoes04.png',
+            'shoes/mules/medium/stiletto/shoes05.png',
+            'shoes/mules/medium/stiletto/shoes06.png',
+            'shoes/mules/medium/stiletto/shoes07.png',
+            'shoes/mules/medium/stiletto/shoes08.png',
+            'shoes/mules/medium/stiletto/shoes09.png'],
+            
+        4: ['sandals/flat/category-0/shoes01.png',
+            'sandals/flat/category-0/shoes02.png',
+            'sandals/flat/category-0/shoes03.png',
+            'sandals/flat/category-0/shoes04.png',
+            'sandals/flat/category-0/shoes05.png',
+            'sandals/flat/category-0/shoes06.png',
+            'sandals/flat/category-0/shoes07.png',
+            'sandals/flat/category-0/shoes08.png',
+            'sandals/flat/category-0/shoes09.png',
+            'sandals/flat/category-0/shoes10.png',
+            'sandals/flat/category-0/shoes11.png',
+            'sandals/flat/category-0/shoes12.png',
+            'sandals/flat/category-0/shoes13.png',
+            'sandals/flat/category-0/shoes14.png',
+            'sandals/flat/category-0/shoes15.png',
+            'sandals/flat/category-0/shoes16.png',
+            'sandals/flat/category-0/shoes17.png',
+            'sandals/flat/category-0/shoes18.png',
+            'sandals/flat/category-0/shoes19.png',
+            'sandals/flat/category-0/shoes20.png',
+            'sandals/flat/category-0/shoes21.png',
+            'sandals/flat/category-0/shoes22.png',
+            'sandals/flat/category-0/shoes23.png',
+            'sandals/flat/category-0/shoes24.png',
+            'sandals/flat/category-1/shoes01.png',
+            'sandals/flat/category-1/shoes02.png',
+            'sandals/flat/category-1/shoes03.png',
+            'sandals/flat/category-1/shoes04.png',
+            'sandals/flat/category-1/shoes05.png',
+            'sandals/flat/category-1/shoes06.png',
+            'sandals/flat/category-1/shoes07.png',
+            'sandals/flat/category-1/shoes08.png',
+            'sandals/flat/category-1/shoes09.png',
+            'sandals/flat/category-1/shoes10.png',
+            'sandals/flat/category-1/shoes11.png',
+            'sandals/flat/category-1/shoes12.png',
+            'sandals/flat/category-2/shoes01.png',
+            'sandals/flat/category-2/shoes02.png',
+            'sandals/flat/category-2/shoes03.png',
+            'sandals/flat/category-2/shoes04.png',
+            'sandals/flat/category-2/shoes05.png',
+            'sandals/flat/category-2/shoes06.png',
+            'sandals/flat/category-2/shoes07.png',
+            'sandals/flat/category-2/shoes08.png',
+            'sandals/flat/category-2/shoes09.png',
+            'sandals/flat/category-2/shoes10.png',
+            'sandals/flat/category-2/shoes11.png',
+            'sandals/flat/category-2/shoes12.png',
+            'sandals/flat/category-2/shoes13.png',
+            'sandals/flat/category-2/shoes14.png',
+            'sandals/high/spool/shoes01.png',
+            'sandals/high/spool/shoes02.png',
+            'sandals/high/spool/shoes03.png',
+            'sandals/high/spool/shoes04.png',
+            'sandals/high/spool/shoes05.png',
+            'sandals/high/spool/shoes06.png',
+            'sandals/high/stiletto/shoes01.png',
+            'sandals/high/stiletto/shoes02.png',
+            'sandals/high/stiletto/shoes03.png',
+            'sandals/high/stiletto/shoes04.png',
+            'sandals/high/stiletto/shoes05.png',
+            'sandals/high/stiletto/shoes06.png',
+            'sandals/high/stiletto/shoes07.png',
+            'sandals/high/stiletto/shoes08.png',
+            'sandals/high/stiletto/shoes09.png',
+            'sandals/high/stiletto/shoes10.png',
+            'sandals/high/stiletto/shoes11.png',
+            'sandals/high/stiletto/shoes12.png',
+            'sandals/high/stiletto/shoes13.png',
+            'sandals/high/stiletto/shoes14.png',
+            'sandals/high/stiletto/shoes15.png',
+            'sandals/high/stiletto/shoes16.png',
+            'sandals/high/stiletto/shoes17.png',
+            'sandals/high/stiletto/shoes18.png',
+            'sandals/high/stiletto/shoes19.png',        
+            'sandals/medium/block/shoes01.png',
+            'sandals/medium/block/shoes02.png',
+            'sandals/medium/block/shoes03.png',
+            'sandals/medium/block/shoes04.png',
+            'sandals/medium/block/shoes05.png',
+            'sandals/medium/block/shoes06.png',
+            'sandals/medium/block/shoes07.png',
+            'sandals/medium/block/shoes08.png',
+            'sandals/medium/spool/shoes01.png',
+            'sandals/medium/spool/shoes02.png',
+            'sandals/medium/spool/shoes03.png',
+            'sandals/medium/spool/shoes04.png',
+            'sandals/medium/spool/shoes05.png',
+            'sandals/medium/spool/shoes06.png',
+            'sandals/medium/spool/shoes07.png'],
+            
+        5: ['slingback/flat/category-1/shoes01.png',
+            'slingback/flat/category-1/shoes02.png',
+            'slingback/flat/category-2/shoes01.png',
+            'slingback/flat/category-2/shoes02.png',
+            'slingback/flat/category-2/shoes03.png',
+            'slingback/flat/category-2/shoes04.png',
+            'slingback/flat/category-2/shoes05.png',
+            'slingback/flat/category-2/shoes06.png',
+            'slingback/flat/category-2/shoes07.png',
+            'slingback/flat/category-2/shoes08.png',
+            'slingback/flat/category-2/shoes09.png',
+            'slingback/flat/category-2/shoes10.png',
+            'slingback/flat/category-2/shoes11.png',
+            'slingback/flat/category-2/shoes12.png',
+            'slingback/flat/category-2/shoes13.png',
+            'slingback/high/block/shoes01.png',
+            'slingback/high/block/shoes02.png',
+            'slingback/high/block/shoes03.png',
+            'slingback/high/stiletto/shoes01.png',
+            'slingback/high/stiletto/shoes02.png',
+            'slingback/high/stiletto/shoes03.png',
+            'slingback/high/stiletto/shoes04.png',
+            'slingback/high/stiletto/shoes05.png',
+            'slingback/high/stiletto/shoes06.png',
+            'slingback/low_kitten/block/shoes01.png',
+            'slingback/low_kitten/block/shoes02.png',
+            'slingback/low_kitten/block/shoes03.png',
+            'slingback/low_kitten/block/shoes04.png',
+            'slingback/low_kitten/kitten/shoes01.png',
+            'slingback/low_kitten/kitten/shoes02.png',
+            'slingback/low_kitten/kitten/shoes03.png',
+            'slingback/low_kitten/kitten/shoes04.png',
+            'slingback/low_kitten/kitten/shoes05.png',
+            'slingback/low_kitten/kitten/shoes06.png',
+            'slingback/low_kitten/spool/shoes01.png',
+            'slingback/low_kitten/spool/shoes02.png',
+            'slingback/low_kitten/spool/shoes03.png',
+            'slingback/low_kitten/spool/shoes04.png',
+            'slingback/low_kitten/spool/shoes05.png',
+            'slingback/low_kitten/spool/shoes06.png',
+            'slingback/low_kitten/spool/shoes07.png',
+            'slingback/low_kitten/spool/shoes08.png',
+            'slingback/low_kitten/spool/shoes09.png',
+            'slingback/low_kitten/spool/shoes10.png',
+            'slingback/low_kitten/spool/shoes11.png',
+            'slingback/low_kitten/spool/shoes12.png',
+            'slingback/low_kitten/spool/shoes13.png',
+            'slingback/low_kitten/spool/shoes14.png',
+            'slingback/medium/stiletto/category-1/shoes01.png',
+            'slingback/medium/stiletto/category-1/shoes02.png',
+            'slingback/medium/stiletto/category-1/shoes03.png',
+            'slingback/medium/stiletto/category-1/shoes04.png',
+            'slingback/medium/stiletto/category-1/shoes05.png',     
+            'slingback/medium/stiletto/category-2/shoes01.png',
+            'slingback/medium/stiletto/category-2/shoes02.png',
+            'slingback/medium/stiletto/category-2/shoes03.png',        
+            'slingback/medium/block/category-0/shoes01.png',
+            'slingback/medium/block/category-0/shoes02.png',
+            'slingback/medium/block/category-0/shoes03.png',
+            'slingback/medium/block/category-0/shoes04.png',
+            'slingback/medium/block/category-1/shoes01.png',
+            'slingback/medium/block/category-1/shoes02.png',
+            'slingback/medium/block/category-1/shoes03.png',
+            'slingback/medium/block/category-1/shoes04.png',
+            'slingback/medium/block/category-1/shoes05.png',
+            'slingback/medium/block/category-1/shoes06.png',
+            'slingback/medium/block/category-1/shoes07.png',
+            'slingback/medium/block/category-2/shoes01.png',
+            'slingback/medium/block/category-2/shoes02.png',
+            'slingback/medium/block/category-2/shoes03.png',
+            'slingback/medium/block/category-2/shoes04.png',
+            'slingback/medium/block/category-2/shoes05.png',
+            'slingback/medium/block/category-2/shoes06.png',
+            'slingback/medium/block/category-2/shoes07.png',
+            'slingback/medium/block/category-2/shoes08.png',
+            'slingback/medium/block/category-2/shoes09.png',
+            'slingback/medium/block/category-2/shoes10.png',      
+            'slingback/medium/block/category-3/shoes01.png',
+            'slingback/medium/block/category-3/shoes02.png',
+            'slingback/medium/block/category-3/shoes03.png',
+            'slingback/medium/block/category-3/shoes04.png',
+            'slingback/medium/very-high/stiletto/category-1/shoes01.png',
+            'slingback/medium/very-high/stiletto/category-1/shoes02.png',    
+            'slingback/medium/very-high/stiletto/category-2/shoes01.png',
+            'slingback/medium/very-high/stiletto/category-2/shoes02.png',
+            'slingback/medium/very-high/stiletto/category-2/shoes03.png',
+            'slingback/medium/very-high/stiletto/category-2/shoes04.png',
+            'slingback/medium/very-high/stiletto/category-2/shoes05.png',
+            'slingback/medium/very-high/stiletto/category-2/shoes06.png',
+            'slingback/medium/very-high/stiletto/category-2/shoes07.png']}
+        TREATMENT_MAP = {
+                1:  {'top2': [1, 2], 'others': [3, 4, 5]},
+                2:  {'top2': [1, 3], 'others': [2, 4, 5]},
+                3:  {'top2': [1, 4], 'others': [2, 3, 5]},
+                4:  {'top2': [1, 5], 'others': [2, 3, 4]},
+                5:  {'top2': [2, 3], 'others': [1, 4, 5]},
+                6:  {'top2': [2, 4], 'others': [1, 3, 5]},
+                7:  {'top2': [2, 5], 'others': [1, 3, 4]},
+                8:  {'top2': [3, 4], 'others': [1, 2, 5]},
+                9:  {'top2': [3, 5], 'others': [1, 2, 4]},
+                10: {'top2': [4, 5], 'others': [1, 2, 3]},
+            }
+        
+        STYLE_NAMES = {
+            1: 'Ballerines',
+            2: 'Mocassins',
+            3: 'Mules',
+            4: 'Sandals',
+            5: 'Slingback',
+        }
+def generate_pairs_for_treatment(treatment):
+    mapping   = TREATMENT_MAP[treatment]
+    top2      = mapping['top2']
+    others    = mapping['others']
+
+    pairs = []
+    for preferred in top2:
+        for other in others:
+            for path1, path2 in itertools.product(
+                STYLE_IMAGES[preferred],
+                STYLE_IMAGES[other]
+            ):
+                pairs.append({
+                    'style_1': preferred,
+                    'path_1':  path1,
+                    'style_2': other,
+                    'path_2':  path2,
+                })
+    return pairs
 
 
 class Subsession(BaseSubsession):
-    pass
+    def creating_session(self):
+        for player in self.get_players():
+            treatment = player.participant.vars.get('treatment')
+            if treatment is None:
+                raise ValueError(f"treatment manquant pour participant {player.participant.code}")
+            pairs = generate_pairs_for_treatment(treatment)
+            player.participant.vars['pairs']               = pairs
+            player.participant.vars['current_pair_index'] = 0
 
 class Group(BaseGroup):
     pass
@@ -22,23 +300,35 @@ class Player(BasePlayer):
     style_right = models.IntegerField(blank=True)
 
 class MakeChoice(Page):
-    form_model = 'player'
+    form_model  = 'player'
     form_fields = ['choice']
 
-    @staticmethod
-    def vars_for_template(player: Player):
-        if player.participant.vars['treatment'] == 1 : 
-            image_path_1 = 'shoes/ballerines/shoes0{}.png'.format(player.round_number)
-            image_path_2 = 'shoes/mocassins/shoes0{}.png'.format(player.round_number)
-        else : 
-            image_path = None
-        round = C.NUM_ROUNDS
-        return dict(image_path_1=image_path_1, image_path_2=image_path_2, round = round)
-        
+    def is_displayed(self):
+        idx   = self.participant.vars.get('current_pair_index', 0)
+        pairs = self.participant.vars.get('pairs', [])
+        return idx < len(pairs)
+
+    def vars_for_template(self):
+        idx  = self.participant.vars['current_pair_index']
+        pair = self.participant.vars['pairs'][idx]
+
+        # Sauvegarder en BDD
+        self.player.image_path_1 = pair['path_1']
+        self.player.image_path_2 = pair['path_2']
+        self.player.style_1      = pair['style_1']
+        self.player.style_2      = pair['style_2']
+
+        return {
+            'image_path_1': pair['path_1'],
+            'image_path_2': pair['path_2'],
+            'style_1_name': STYLE_NAMES[pair['style_1']],
+            'style_2_name': STYLE_NAMES[pair['style_2']],
+            'current':      idx + 1,
+            'total':        len(self.participant.vars['pairs']),
+        }
+
+    def before_next_page(self, timeout_happened):
+        self.participant.vars['current_pair_index'] += 1
 
 
-
-
-page_sequence = [MakeChoice]
-
-
+page_sequence = [MakeChoice] * 5000  # is_displayed() stoppe au bon moment
