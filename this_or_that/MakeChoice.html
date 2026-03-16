@@ -1,84 +1,107 @@
 {{ extends "global/Page.html" }}
-{{ block title }}Quel style préférez-vous ?{{ endblock }}
+{{ block title }}Choix des chaussures nº {{ player.round_number }}{{ endblock }}
 
 {{ block content }}
 
 <style>
-.compare-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  align-items: start;
+.page-bg {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: #fff2f6;
 }
 
-.style-card {
-  background: #fff7fa;
-  border: 1px solid #f3bfd0;
-  border-radius: 16px;
-  padding: 18px;
-}
-
-.image-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  max-height: 600px;
-  overflow-y: auto;
-}
-
-.image-grid img {
+.pink-card {
   width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: 10px;
+  max-width: 700px;
+  background: #ffd6e5;
+  border: 1px solid #f3a9c3;
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  text-align: center;
 }
 
-.choice-box {
-  margin-top: 15px;
-  text-align: center;
+.img-wrap {
+  margin: 10px auto 16px auto;
+  background: rgba(255,255,255,0.65);
+  border-radius: 16px;
+  padding: 12px;
+  display: inline-block;
+  max-width: 520px;
+  width: 100%;
+}
+
+.img-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  margin: 0 auto;
+}
+
+.btn-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.choice-btn {
+  background-color: #ffb6c1;
+  border: 1px solid rgba(0,0,0,0.08);
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  min-width: 170px;
+}
+
+.choice-btn:hover {
+  background-color: #ff9fb3;
 }
 </style>
 
-<p>Comparaison {{ round_number }} sur {{ num_rounds }}</p>
+<div class="page-bg">
+  <div class="pink-card">
 
-<div class="compare-container">
-  <div class="style-card">
-    <h4>Option A</h4>
-
-    <div class="image-grid">
-      {% for img in left_images %}
-        <img src="{% static img %}">
-      {% endfor %}
+    <div class="img-wrap">
+      <img src="{{ static image_path }}" alt="Chaussure">
     </div>
 
-    <div class="choice-box">
-      <label>
-        <input type="radio" name="choice" value="1">
-        Je préfère ce style
-      </label>
-    </div>
-  </div>
+    <!-- Hidden field -->
+    <input type="hidden" name="like" id="like">
 
-  <div class="style-card">
-    <h4>Option B</h4>
+    <div class="btn-row">
+      <button type="button" class="choice-btn" onclick="submitChoice(1)">
+        👎🏾 Je n'aime pas
+      </button>
 
-    <div class="image-grid">
-      {% for img in right_images %}
-        <img src="{% static img %}">
-      {% endfor %}
+      <button type="button" class="choice-btn" onclick="submitChoice(2)">
+        J'aime 👍🏾
+      </button>
     </div>
 
-    <div class="choice-box">
-      <label>
-        <input type="radio" name="choice" value="2">
-        Je préfère ce style
-      </label>
+    <div style="display:none;">
+      {{ next_button }}
     </div>
+
   </div>
 </div>
 
-<div style="margin-top:20px;">
-    {{ next_button }}
-</div>
+<script>
+const choiceInput = document.getElementById('like');
+const formEl = document.querySelector('form');
+
+function submitChoice(val){
+  choiceInput.value = val;
+  formEl.submit();
+}
+</script>
 
 {{ endblock }}
