@@ -1,6 +1,4 @@
-
 from otree.api import *
-import itertools
 
 doc = ''
 
@@ -297,7 +295,7 @@ def generate_pairs_for_treatment(treatment, n_pairs_per_comparison=5):
 class C(BaseConstants):
     NAME_IN_URL      = 'this_or_that'
     PLAYERS_PER_GROUP = None
-    NUM_ROUNDS       = 5000
+    NUM_ROUNDS       = 50
 
 class Subsession(BaseSubsession):
     pass
