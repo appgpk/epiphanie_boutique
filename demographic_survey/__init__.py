@@ -17,23 +17,23 @@ class Player(BasePlayer):
     age = models.IntegerField(
         label="Quel est votre âge ?",
         min=10, max=99,
-        blank=True
+        blank=False
     )
 
     gender = models.StringField(
         label="Quel est votre genre ?",
         choices=["Femme", "Homme", "Autre", "Je préfère ne pas répondre"],
-        blank=True
+        blank=False
     )
 
     city = models.StringField(
         label="Dans quelle ville habitez-vous ?",
-        blank=True
+        blank=False
     )
 
     shoe_size = models.IntegerField(
         label="Quelle est votre pointure ?",
-        blank=True
+        blank=False
     )
 
     budget = models.StringField(
@@ -46,7 +46,7 @@ class Player(BasePlayer):
             [5,"Plus de 25 000 FCFA"],
             [6,"Je préfère ne pas répondre"],
         ],
-        blank=True
+        blank=False
     )
 
     frequency = models.StringField(
@@ -58,7 +58,7 @@ class Player(BasePlayer):
             [4,"Plus d’1 fois par mois"],
             [5,"Je préfère ne pas répondre"],
         ],
-        blank=True
+        blank=False
     )
     purchase_factors = models.LongStringField(
     label="Selon vous, quels sont les principaux facteurs qui influencent votre décision d’acheter ou non une paire de chaussures ?",
@@ -74,7 +74,7 @@ class Player(BasePlayer):
             [5, "Plus de 20 000 FCFA"],
             [6, "Je préfère ne pas répondre"],
         ],
-        blank=True
+        blank=False
     )
     purchase_barrier = models.LongStringField(
     label="Quel est le principal facteur qui peut vous empêcher d’acheter une paire de chaussures qui vous plaît ? "
@@ -120,13 +120,20 @@ class Introduction(Page):
     def is_displayed(player: Player):
         return player.round_number == 1
         
-class Demographics(Page):
+class Demographics1(Page):
     form_model = 'player'
-    form_fields = ['age', 'gender', 'city', 'shoe_size', 'budget', 'frequency', 'purchase_factors', 'price_too_expensive', 'purchase_barrier', 'purchase_priority']
+    form_fields = ['age', 'gender', 'city', 'shoe_size', 'budget', 'frequency', 'price_too_expensive' ]
     @staticmethod
     def is_displayed(player: Player):
         return player.round_number == 1
 
+class Demographics2(Page):
+    form_model = 'player'
+    form_fields = ['purchase_factors', 'purchase_barrier', 'purchase_priority']
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number == 1
+        
 class Ranking(Page):
     form_model = 'player'
     form_fields = ['rank1', 'rank2', 'rank3', 'rank4', 'rank5']
