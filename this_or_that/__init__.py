@@ -264,7 +264,7 @@ STYLE_NAMES = {
 # ── Fonction globale ──────────────────────────────────────────────────────────
 
 import random
-def generate_pairs_for_treatment(treatment, n_pairs_per_comparison=5):
+def generate_pairs_for_treatment(treatment, n_pairs_per_comparison=4):
     mapping = TREATMENT_MAP[treatment]
     top2 = mapping['top2']
     others = mapping['others']
