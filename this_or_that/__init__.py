@@ -356,6 +356,12 @@ class MakeChoice(Page):
 
     def before_next_page(player, timeout_happened):
         player.participant.vars['current_pair_index'] += 1
+        
+class End(Page):
+    def is_displayed(player):
+        # Show only when all pairs have been answered
+        idx = player.participant.vars.get('current_pair_index', 0)
+        pairs = player.participant.vars.get('pairs', [])
+        return idx >= len(pairs)
 
-
-page_sequence = [MakeChoice]
+page_sequence = [MakeChoice, End]
