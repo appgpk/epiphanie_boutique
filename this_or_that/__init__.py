@@ -229,15 +229,16 @@ STYLE_IMAGES = {
         'shoes/slingback/medium/block/category-3/shoes02.png',
         'shoes/slingback/medium/block/category-3/shoes03.png',
         'shoes/slingback/medium/block/category-3/shoes04.png',
-        'shoes/slingback/medium/very-high/stiletto/category-1/shoes01.png',
-        'shoes/slingback/medium/very-high/stiletto/category-1/shoes02.png',
-        'shoes/slingback/medium/very-high/stiletto/category-2/shoes01.png',
-        'shoes/slingback/medium/very-high/stiletto/category-2/shoes02.png',
-        'shoes/slingback/medium/very-high/stiletto/category-2/shoes03.png',
-        'shoes/slingback/medium/very-high/stiletto/category-2/shoes04.png',
-        'shoes/slingback/medium/very-high/stiletto/category-2/shoes05.png',
-        'shoes/slingback/medium/very-high/stiletto/category-2/shoes06.png',
-        'shoes/slingback/medium/very-high/stiletto/category-2/shoes07.png'],
+        #'shoes/slingback/medium/very-high/stiletto/category-1/shoes01.png',
+         #'shoes/slingback/medium/very-high/stiletto/category-1/shoes02.png',
+         #'shoes/slingback/medium/very-high/stiletto/category-2/shoes01.png',
+         #'shoes/slingback/medium/very-high/stiletto/category-2/shoes02.png',
+         #'shoes/slingback/medium/very-high/stiletto/category-2/shoes03.png',
+         #'shoes/slingback/medium/very-high/stiletto/category-2/shoes04.png',
+         #'shoes/slingback/medium/very-high/stiletto/category-2/shoes05.png',
+         #'shoes/slingback/medium/very-high/stiletto/category-2/shoes06.png',
+         #'shoes/slingback/medium/very-high/stiletto/category-2/shoes07.png'
+       ],
 }
 
 TREATMENT_MAP = {
