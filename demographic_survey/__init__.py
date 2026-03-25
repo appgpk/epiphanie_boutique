@@ -191,4 +191,4 @@ class Ranking(Page):
 
 
 
-page_sequence = [Introduction, Demographics, Ranking]
+page_sequence = [Introduction, Demographics1, Demographics2, Ranking]
