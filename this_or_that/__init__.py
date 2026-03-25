@@ -1,4 +1,5 @@
 from otree.api import *
+import random
 
 doc = ''
 
@@ -262,7 +263,6 @@ STYLE_NAMES = {
 
 
 # ── Fonction globale ──────────────────────────────────────────────────────────
-
 import random
 def generate_pairs_for_treatment(treatment, n_pairs_per_comparison=4):
     mapping = TREATMENT_MAP[treatment]
