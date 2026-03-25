@@ -43,12 +43,18 @@
   text-align: center;
 }
 
+/* ✅ FIX PRINCIPAL */
 .shoe-item img {
   width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
+  height: 220px;
+  object-fit: contain;          /* ← NE COUPE PLUS */
+  object-position: center bottom; /* ← remonte la chaussure */
+  background: white;
   border-radius: 12px;
+  padding: 10px;
 }
+
+/* dernière image centrée */
 .shoe-item:last-child {
   grid-column: 1 / span 2;
   max-width: 50%;
@@ -87,9 +93,10 @@
     </div>
 
     <div style="margin-top:20px;">
-<button class="next-btn">
-    Suivant
-</button>    </div>
+      <button class="next-btn">
+        Suivant
+      </button>
+    </div>
 
   </div>
 </div>
