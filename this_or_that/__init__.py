@@ -265,25 +265,32 @@ STYLE_NAMES = {
 
 # ── Fonction globale ──────────────────────────────────────────────────────────
 
-def generate_pairs_for_treatment(treatment):
+import random
+def generate_pairs_for_treatment(treatment, n_pairs_per_comparison=5):
     mapping = TREATMENT_MAP[treatment]
-    top2    = mapping['top2']
-    others  = mapping['others']
-    pairs   = []
+    top2 = mapping['top2']
+    others = mapping['others']
+    pairs = []
+
     for preferred in top2:
         for other in others:
-            for path1, path2 in itertools.product(
-                STYLE_IMAGES[preferred],
-                STYLE_IMAGES[other]
-            ):
+            images_1 = STYLE_IMAGES[preferred][:]
+            images_2 = STYLE_IMAGES[other][:]
+
+            random.shuffle(images_1)
+            random.shuffle(images_2)
+
+            for path1, path2 in zip(images_1[:n_pairs_per_comparison],
+                                    images_2[:n_pairs_per_comparison]):
                 pairs.append({
                     'style_1': preferred,
-                    'path_1':  path1,
+                    'path_1': path1,
                     'style_2': other,
-                    'path_2':  path2,
+                    'path_2': path2,
                 })
-    return pairs
 
+    random.shuffle(pairs)
+    return pairs
 
 # ── Classes oTree ─────────────────────────────────────────────────────────────
 
