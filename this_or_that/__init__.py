@@ -9,8 +9,7 @@ STYLE_IMAGES = {
     1: ['shoes/ballerines/shoes01.png',
         'shoes/ballerines/shoes02.png',
         'shoes/ballerines/shoes03.png',
-        'shoes/ballerines/shoes04.png',
-        'shoes/ballerines/shoes05.png'],
+        'shoes/ballerines/shoes04.png'],
 
     2: ['shoes/mocassins/shoes01.png',
         'shoes/mocassins/shoes02.png',
