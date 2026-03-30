@@ -14,9 +14,16 @@ class Group(BaseGroup):
     pass
 
 class Player(BasePlayer):
-    age = models.IntegerField(
-        label="Quel est votre âge ?",
-        min=10, max=99,
+    age = models.IntegerField(label="Quel est votre âge ?",
+        choices=[
+            [1, "Moins de 18 ans"],
+            [2, "18 – 24 ans"],
+            [3, "25 – 34 ans"],
+            [4, "35 – 44 ans"],
+            [5, "45 – 54 ans"],
+            [6, "55 ans et plus"],
+            [7, "Je préfère ne pas répondre"],
+        ],
         blank=False
     )
 
@@ -36,46 +43,15 @@ class Player(BasePlayer):
         blank=False
     )
 
-    budget = models.StringField(
-        label="Quel budget mettez-vous en général pour une paire de chaussures ?",
-        choices=[
-            [1,"Moins de 5 000 FCFA"],
-            [2,"5 000 – 10 000 FCFA"],
-            [3,"10 000 – 15 000 FCFA"],
-            [4,"15 000 – 25 000 FCFA"],
-            [5,"Plus de 25 000 FCFA"],
-            [6,"Je préfère ne pas répondre"],
-        ],
+    phone_number = models.StringField(
+        label="Quel est votre numéro de téléphone ? (Cette information est nécessaire pour vous contacter en cas de gain, mais elle ne sera pas utilisée à d’autres fins.)",
         blank=False
     )
 
-    frequency = models.StringField(
-        label="À quelle fréquence achetez-vous des chaussures ?",
-        choices=[
-            [1,"1 fois par an"],
-            [2,"2–3 fois par an"],
-            [3,"1 fois par mois"],
-            [4,"Plus d’1 fois par mois"],
-            [5,"Je préfère ne pas répondre"],
-        ],
-        blank=False
-    )
     purchase_factors = models.LongStringField(
     label="Selon vous, quels sont les principaux facteurs qui influencent votre décision d’acheter ou non une paire de chaussures ?",
     blank=True)
 
-    price_too_expensive = models.IntegerField(
-        label="À partir de quel prix considérez-vous qu’une paire de chaussures devient trop chère ?",
-        choices=[
-            [1, "5 000 FCFA"],
-            [2, "10 000 FCFA"],
-            [3, "15 000 FCFA"],
-            [4, "20 000 FCFA"],
-            [5, "Plus de 20 000 FCFA"],
-            [6, "Je préfère ne pas répondre"],
-        ],
-        blank=False
-    )
     purchase_barrier = models.LongStringField(
     label="Quel est le principal facteur qui peut vous empêcher d’acheter une paire de chaussures qui vous plaît ? "
           "(Par exemple : le prix, la qualité, la pointure, le style, la durabilité, etc.)",
@@ -122,7 +98,7 @@ class Introduction(Page):
         
 class Demographics1(Page):
     form_model = 'player'
-    form_fields = ['age', 'gender', 'city', 'shoe_size', 'budget', 'frequency', 'price_too_expensive' ]
+    form_fields = ['age', 'gender', 'city', 'shoe_size', 'phone_number']
     @staticmethod
     def is_displayed(player: Player):
         return player.round_number == 1
@@ -193,3 +169,40 @@ class Ranking(Page):
 
 page_sequence = [Ranking]
 #Introduction, Demographics1, Demographics2, 
+""""    budget = models.StringField(
+        label="Quel budget mettez-vous en général pour une paire de chaussures ?",
+        choices=[
+            [1,"Moins de 5 000 FCFA"],
+            [2,"5 000 – 10 000 FCFA"],
+            [3,"10 000 – 15 000 FCFA"],
+            [4,"15 000 – 25 000 FCFA"],
+            [5,"Plus de 25 000 FCFA"],
+            [6,"Je préfère ne pas répondre"],
+        ],
+        blank=False
+    )
+
+    frequency = models.StringField(
+        label="À quelle fréquence achetez-vous des chaussures ?",
+        choices=[
+            [1,"1 fois par an"],
+            [2,"2–3 fois par an"],
+            [3,"1 fois par mois"],
+            [4,"Plus d’1 fois par mois"],
+            [5,"Je préfère ne pas répondre"],
+        ],
+        blank=False
+    )
+        price_too_expensive = models.IntegerField(
+        label="À partir de quel prix considérez-vous qu’une paire de chaussures devient trop chère ?",
+        choices=[
+            [1, "5 000 FCFA"],
+            [2, "10 000 FCFA"],
+            [3, "15 000 FCFA"],
+            [4, "20 000 FCFA"],
+            [5, "Plus de 20 000 FCFA"],
+            [6, "Je préfère ne pas répondre"],
+        ],
+        blank=False
+    )
+    """
