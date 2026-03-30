@@ -167,8 +167,8 @@ class Ranking(Page):
 
 
 
-page_sequence = [Ranking]
-#Introduction, Demographics1, Demographics2, 
+page_sequence = [Introduction, Demographics1, Demographics2, Ranking]
+
 """"    budget = models.StringField(
         label="Quel budget mettez-vous en général pour une paire de chaussures ?",
         choices=[
