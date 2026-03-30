@@ -1,0 +1,144 @@
+{{ extends "global/Page.html" }}
+{{ block title }}Choix des chaussures nº {{ player.round_number }}{{ endblock }}
+{{ block content }}
+<style>
+.page-bg {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: #fff2f6;
+}
+.pink-card {
+  width: 100%;
+  max-width: 900px;
+  background: #ffd6e5;
+  border: 1px solid #f3a9c3;
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  text-align: center;
+}
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #c2547a;
+  margin-bottom: 20px;
+}
+.shoes-row {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.shoe-option {
+  flex: 1;
+  min-width: 220px;
+  max-width: 380px;
+  background: rgba(255,255,255,0.65);
+  border: 3px solid transparent;
+  border-radius: 16px;
+  padding: 14px;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.shoe-option:hover {
+  border-color: #ff9fb3;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(255,100,140,0.2);
+}
+.shoe-option.selected {
+  border-color: #e0527a;
+  box-shadow: 0 8px 24px rgba(224,82,122,0.35);
+  background: rgba(255,255,255,0.9);
+}
+.shoe-option img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+}
+.shoe-label {
+  margin-top: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #c2547a;
+}
+.confirm-btn {
+  background-color: #e0527a;
+  border: none;
+  color: white;
+  padding: 14px 40px;
+  font-size: 17px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  margin-top: 24px;
+  opacity: 0.4;
+  pointer-events: none;
+  transition: opacity 0.2s, background-color 0.2s;
+}
+.confirm-btn.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.confirm-btn.active:hover {
+  background-color: #c2406a;
+}
+</style>
+
+<div class="page-bg">
+  <div class="pink-card">
+    <div class="title">Laquelle de ces chaussures préférez-vous ?</div>
+
+    <div class="shoes-row">
+      <!-- Chaussure 1 -->
+      <div class="shoe-option" id="option-1" onclick="selectShoe(1)">
+        <img src="{{ static image_path_1 }}" alt="Chaussure 1">
+        <div class="shoe-label">Chaussure A</div>
+      </div>
+
+      <!-- Chaussure 2 -->
+      <div class="shoe-option" id="option-2" onclick="selectShoe(2)">
+        <img src="{{ static image_path_2 }}" alt="Chaussure 2">
+        <div class="shoe-label">Chaussure B</div>
+      </div>
+    </div>
+
+    <!-- Hidden field -->
+    <input type="hidden" name="choice" id="choice">
+
+    <br>
+    <button type="button" class="confirm-btn" id="confirm-btn" onclick="submitChoice()">
+      ✅ Confirmer mon choix
+    </button>
+
+    <div style="display:none;">
+      {{ next_button }}
+    </div>
+  </div>
+</div>
+
+<script>
+  const choiceInput = document.getElementById('choice');
+  const confirmBtn  = document.getElementById('confirm-btn');
+  const formEl      = document.querySelector('form');
+
+  function selectShoe(val) {
+    // Retirer la sélection précédente
+    document.querySelectorAll('.shoe-option').forEach(el => el.classList.remove('selected'));
+    // Marquer l'option choisie
+    document.getElementById('option-' + val).classList.add('selected');
+    // Mettre à jour la valeur cachée
+    choiceInput.value = val;
+    // Activer le bouton de confirmation
+    confirmBtn.classList.add('active');
+  }
+
+  function submitChoice() {
+    if (!choiceInput.value) return;
+    formEl.submit();
+  }
+</script>
+{{ endblock }}

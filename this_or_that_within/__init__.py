@@ -200,4 +200,4 @@ class End(Page):
         pairs = player.participant.vars.get('pairs', [])
         return idx >= len(pairs)
 
-page_sequence = [MakeChoice]
+page_sequence = [MakeChoice, End]
