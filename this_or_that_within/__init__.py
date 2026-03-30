@@ -1,9 +1,8 @@
 from otree.api import *
 import random
+from itertools import combinations
 
 doc = ''
-
-# ── Constantes globales (hors classe) ────────────────────────────────────────
 
 STYLE_IMAGES = {
     1: ['shoes_v2/ballerines/shoes01.png',
@@ -72,8 +71,7 @@ STYLE_IMAGES = {
         'shoes_v2/slingback/medium/block/shoes04.png',
         'shoes_v2/slingback/medium/block/shoes05.png',
         'shoes_v2/slingback/medium/block/shoes06.png',
-        'shoes_v2/slingback/medium/block/shoes07.png',
-       ],
+        'shoes_v2/slingback/medium/block/shoes07.png'],
 }
 
 TREATMENT_MAP = {
@@ -98,78 +96,76 @@ STYLE_NAMES = {
 }
 
 
-# ── Fonction globale ──────────────────────────────────────────────────────────
-import random
-def generate_pairs_for_treatment(treatment, n_pairs_per_comparison=4):
+def generate_pairs_for_treatment(treatment, n_pairs_per_style=5):
     mapping = TREATMENT_MAP[treatment]
     top2 = mapping['top2']
-    others = mapping['others']
+
     pairs = []
 
-    for preferred in top2:
-        for other in others:
-            images_1 = STYLE_IMAGES[preferred][:]
-            images_2 = STYLE_IMAGES[other][:]
+    for style in top2:
+        images = STYLE_IMAGES[style][:]
+        random.shuffle(images)
 
-            random.shuffle(images_1)
-            random.shuffle(images_2)
+        all_pairs = list(combinations(images, 2))
+        random.shuffle(all_pairs)
 
-            for path1, path2 in zip(images_1[:n_pairs_per_comparison],
-                                    images_2[:n_pairs_per_comparison]):
-                pairs.append({
-                    'style_1': preferred,
-                    'path_1': path1,
-                    'style_2': other,
-                    'path_2': path2,
-                })
+        n_to_take = min(n_pairs_per_style, len(all_pairs))
+
+        for img1, img2 in all_pairs[:n_to_take]:
+            if random.random() < 0.5:
+                img1, img2 = img2, img1
+
+            pairs.append({
+                'style': style,
+                'path_1': img1,
+                'path_2': img2,
+            })
 
     random.shuffle(pairs)
     return pairs
 
-# ── Classes oTree ─────────────────────────────────────────────────────────────
 
 class C(BaseConstants):
-    NAME_IN_URL      = 'this_or_that'
+    NAME_IN_URL = 'this_or_that'
     PLAYERS_PER_GROUP = None
-    NUM_ROUNDS       = 50
+    NUM_ROUNDS = 50
+
 
 class Subsession(BaseSubsession):
     pass
+
 
 class Group(BaseGroup):
     pass
 
 
 class Player(BasePlayer):
-    treatment    = models.IntegerField()
-    choice       = models.IntegerField()
+    treatment = models.IntegerField()
+    choice = models.IntegerField()
     image_path_1 = models.StringField()
     image_path_2 = models.StringField()
-    style_1      = models.IntegerField(blank=True)
-    style_2      = models.IntegerField(blank=True)
+    style = models.IntegerField(blank=True)
 
 
-# ── Pages ─────────────────────────────────────────────────────────────────────
-class MakeChoice(Page):
-    form_model  = 'player'
+class MakeChoiceWithin(Page):
+    form_model = 'player'
     form_fields = ['choice']
 
     def is_displayed(player):
-        # Initialiser les paires au premier affichage
         if 'pairs' not in player.participant.vars:
             treatment = player.participant.vars.get('treatment')
             if treatment is None:
-                return False  # sécurité
+                return False
             pairs = generate_pairs_for_treatment(treatment)
-            player.participant.vars['pairs']               = pairs
+            player.participant.vars['pairs'] = pairs
             player.participant.vars['current_pair_index'] = 0
 
-        idx   = player.participant.vars.get('current_pair_index', 0)
+        idx = player.participant.vars.get('current_pair_index', 0)
         pairs = player.participant.vars.get('pairs', [])
         return idx < len(pairs)
 
     def vars_for_template(player):
-        idx  = player.participant.vars['current_pair_index']
+        idx = player.participant.vars['current_pair_index']
         pairs = player.participant.vars['pairs']
 
         if not pairs or idx >= len(pairs):
@@ -178,26 +174,25 @@ class MakeChoice(Page):
         pair = pairs[idx]
         player.image_path_1 = pair['path_1']
         player.image_path_2 = pair['path_2']
-        player.style_1      = pair['style_1']
-        player.style_2      = pair['style_2']
+        player.style = pair['style']
 
         return {
             'image_path_1': pair['path_1'],
             'image_path_2': pair['path_2'],
-            'style_1_name': STYLE_NAMES[pair['style_1']],
-            'style_2_name': STYLE_NAMES[pair['style_2']],
-            'current':      idx + 1,
-            'total':        len(pairs),
+            'style_name': STYLE_NAMES[pair['style']],
+            'current': idx + 1,
+            'total': len(pairs),
         }
 
     def before_next_page(player, timeout_happened):
         player.participant.vars['current_pair_index'] += 1
-        
+
+
 class End(Page):
     def is_displayed(player):
-        # Show only when all pairs have been answered
         idx = player.participant.vars.get('current_pair_index', 0)
         pairs = player.participant.vars.get('pairs', [])
         return idx >= len(pairs)
 
-page_sequence = [MakeChoice, End]
+
+page_sequence = [MakeChoiceWithin]
