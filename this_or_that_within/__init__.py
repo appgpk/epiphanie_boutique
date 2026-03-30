@@ -95,8 +95,10 @@ STYLE_NAMES = {
     5: 'Slingback',
 }
 
+from itertools import combinations
+import random
 
-def generate_pairs_for_treatment(treatment, n_pairs_per_style=5):
+def generate_pairs_for_treatment(treatment):
     mapping = TREATMENT_MAP[treatment]
     top2 = mapping['top2']
 
@@ -104,14 +106,14 @@ def generate_pairs_for_treatment(treatment, n_pairs_per_style=5):
 
     for style in top2:
         images = STYLE_IMAGES[style][:]
-        random.shuffle(images)
+
+        if len(images) < 2:
+            continue
 
         all_pairs = list(combinations(images, 2))
-        random.shuffle(all_pairs)
 
-        n_to_take = min(n_pairs_per_style, len(all_pairs))
+        for img1, img2 in all_pairs:
 
-        for img1, img2 in all_pairs[:n_to_take]:
             if random.random() < 0.5:
                 img1, img2 = img2, img1
 
@@ -121,7 +123,9 @@ def generate_pairs_for_treatment(treatment, n_pairs_per_style=5):
                 'path_2': img2,
             })
 
+    # shuffle final order
     random.shuffle(pairs)
+
     return pairs
 
 
