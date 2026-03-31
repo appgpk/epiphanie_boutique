@@ -130,7 +130,7 @@ def generate_pairs_for_treatment(treatment):
 
 
 class C(BaseConstants):
-    NAME_IN_URL = 'this_or_that'
+    NAME_IN_URL = 'this_or_that_within'
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 50
 
