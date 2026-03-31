@@ -1,6 +1,6 @@
 from os import environ
 SESSION_CONFIG_DEFAULTS = dict(real_world_currency_per_point=1, participation_fee=0)
-SESSION_CONFIGS = [dict(name='epiphanie', num_demo_participants=None, app_sequence=['demographic_survey','this_or_that','this_or_that_within'])]
+SESSION_CONFIGS = [dict(name='epiphanie', num_demo_participants=None, app_sequence=['this_or_that','this_or_that_within'])]
 LANGUAGE_CODE = 'en'
 REAL_WORLD_CURRENCY_CODE = 'USD'
 USE_POINTS = True
@@ -19,3 +19,4 @@ SECRET_KEY = 'blahblah'
 
 # if an app is included in SESSION_CONFIGS, you don't need to list it here
 INSTALLED_APPS = ['otree']
+#'demographic_survey',
