@@ -89,6 +89,8 @@ class Player(BasePlayer):
     )
     
     treatment = models.IntegerField()
+    first_choice = models.IntegerField()  
+    second_choice = models.IntegerField()  
 
 
 class Introduction(Page):
@@ -112,53 +114,31 @@ class Demographics2(Page):
         
 class Ranking(Page):
     form_model = 'player'
-    form_fields = ['rank1', 'rank2', 'rank3', 'rank4', 'rank5']
+    form_fields = ['first_choice', 'second_choice']
 
-    @staticmethod    
-    def is_displayed(player: Player):
-        return player.round_number == 1
     @staticmethod
-    def error_message(player, values):
-        print("Submitted values:", values)
-        ranks = [values['rank1'], values['rank2'], values['rank3'], values['rank4'],  values['rank5']]
-        print("Ranks:", ranks)
-        print("Unique ranks:", set(ranks))
-
-        if len(set(ranks)) != 5:
-            return "Chaque modèle doit avoir un rang unique."
+    def is_displayed(player):
+        return player.round_number == 1
 
     @staticmethod
     def before_next_page(player, timeout_happened):
-        if (player.rank1 == 1 and player.rank2 == 2) or (player.rank1 == 2 and player.rank2 == 1):
-            player.treatment = 1
-        
-        elif (player.rank1 == 1 and player.rank3 == 2) or (player.rank1 == 2 and player.rank3 == 1):
-            player.treatment = 2
-        
-        elif (player.rank1 == 1 and player.rank4 == 2) or (player.rank1 == 2 and player.rank4 == 1):
-            player.treatment = 3
-        
-        elif (player.rank1 == 1 and player.rank5 == 2) or (player.rank1 == 2 and player.rank5 == 1):
-            player.treatment = 4
-        
-        elif (player.rank2 == 1 and player.rank3 == 2) or (player.rank2 == 2 and player.rank3 == 1):
-            player.treatment = 5
-        
-        elif (player.rank2 == 1 and player.rank4 == 2) or (player.rank2 == 2 and player.rank4 == 1):
-            player.treatment = 6
-        
-        elif (player.rank2 == 1 and player.rank5 == 2) or (player.rank2 == 2 and player.rank5 == 1):
-            player.treatment = 7
-        
-        elif (player.rank3 == 1 and player.rank4 == 2) or (player.rank3 == 2 and player.rank4 == 1):
-            player.treatment = 8
-        
-        elif (player.rank3 == 1 and player.rank5 == 2) or (player.rank3 == 2 and player.rank5 == 1):
-            player.treatment = 9
-        
-        elif (player.rank4 == 1 and player.rank5 == 2) or (player.rank4 == 2 and player.rank5 == 1):
-            player.treatment = 10
+        a = player.first_choice
+        b = player.second_choice
+        pair = tuple(sorted([a, b]))   # ex: (1,3) peu importe l'ordre
 
+        treatment_map = {
+            (1,2): 1,
+            (1,3): 2,
+            (1,4): 3,
+            (1,5): 4,
+            (2,3): 5,
+            (2,4): 6,
+            (2,5): 7,
+            (3,4): 8,
+            (3,5): 9,
+            (4,5): 10,
+        }
+        player.treatment = treatment_map.get(pair, 0)
         player.participant.vars['treatment'] = player.treatment
 
 
