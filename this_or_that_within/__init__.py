@@ -199,4 +199,4 @@ class End(Page):
         return idx >= len(pairs)
 
 
-page_sequence = [MakeChoiceWithin]
+page_sequence = [MakeChoiceWithin, End]
