@@ -1,19 +1,8 @@
 {{ extends "global/Page.html" }}
-{{ block title }}Choisissez votre type de chaussure préférée{{ endblock }}
+{{ block title }}Choisissez vos 2 styles préférés{{ endblock }}
 
 {{ block content }}
-
 <style>
-.next-btn {
-  background-color: #ffb6c1;
-  border: none;
-  color: white;
-  padding: 10px 22px;
-  font-size: 16px;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
 .survey-bg {
   min-height: 70vh;
   display: flex;
@@ -22,83 +11,187 @@
   padding: 24px;
   background: #fff2f6;
 }
-
 .survey-card {
   width: 100%;
-  max-width: 700px;
+  max-width: 750px;
   background: #ffd6e5;
   border: 1px solid #f3a9c3;
   border-radius: 18px;
   padding: 25px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-}
-
-.shoe-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
-
-.shoe-item {
   text-align: center;
 }
+.instruction {
+  font-size: 17px;
+  font-weight: 700;
+  color: #c2547a;
+  margin-bottom: 6px;
+}
+.sub-instruction {
+  font-size: 14px;
+  color: #a04060;
+  margin-bottom: 20px;
+}
+.shoe-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  justify-items: center;
+}
+/* Les 2 dernières centrées */
+.shoe-grid .shoe-item:nth-child(4) { grid-column: 1 / span 1; margin-left: auto; }
+.shoe-grid .shoe-item:nth-child(5) { grid-column: 2 / span 1; margin-right: auto; }
 
-/* ✅ FIX PRINCIPAL */
+.shoe-item {
+  cursor: pointer;
+  border: 3px solid transparent;
+  border-radius: 16px;
+  padding: 10px;
+  background: rgba(255,255,255,0.6);
+  transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+  width: 100%;
+}
+.shoe-item:hover {
+  border-color: #ff9fb3;
+  transform: translateY(-3px);
+}
+.shoe-item.selected {
+  border-color: #e0527a;
+  box-shadow: 0 6px 20px rgba(224,82,122,0.35);
+  background: rgba(255,255,255,0.9);
+}
+.shoe-item.first  { border-color: #e0527a; }
+.shoe-item.second { border-color: #e0527a; border-style: dashed; }
+
 .shoe-item img {
   width: 100%;
-  height: 220px;
-  object-fit: contain;          /* ← NE COUPE PLUS */
-  object-position: center bottom; /* ← remonte la chaussure */
+  height: 180px;
+  object-fit: contain;
   background: white;
-  border-radius: 12px;
-  padding: 10px;
+  border-radius: 10px;
+  padding: 8px;
 }
-
-/* dernière image centrée */
-.shoe-item:last-child {
-  grid-column: 1 / span 2;
-  max-width: 50%;
-  margin: 0 auto;
+.badge {
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #e0527a;
+  min-height: 20px;
+}
+.confirm-btn {
+  background-color: #e0527a;
+  border: none;
+  color: white;
+  padding: 14px 40px;
+  font-size: 17px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  margin-top: 24px;
+  opacity: 0.4;
+  pointer-events: none;
+  transition: opacity 0.2s, background-color 0.2s;
+}
+.confirm-btn.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.confirm-btn.active:hover {
+  background-color: #c2406a;
 }
 </style>
 
 <div class="survey-bg">
   <div class="survey-card">
+    <div class="instruction">Sélectionnez les 2 styles qui vous correspondent le plus</div>
+    <div class="sub-instruction">Cliquez sur vos deux chaussures préférées</div>
 
     <div class="shoe-grid">
-      <div class="shoe-item">
-        <img src="{% static 'shoes/shoes01.png' %}">
-        {{ formfield 'rank1' }}
+      <div class="shoe-item" id="shoe-1" onclick="selectShoe(1)">
+        <img src="{{ static 'shoes/shoes01.png' }}" alt="Style 1">
+        <div class="badge" id="badge-1"></div>
       </div>
-
-      <div class="shoe-item">
-        <img src="{% static 'shoes/shoes02.png' %}">
-        {{ formfield 'rank2' }}
+      <div class="shoe-item" id="shoe-2" onclick="selectShoe(2)">
+        <img src="{{ static 'shoes/shoes02.png' }}" alt="Style 2">
+        <div class="badge" id="badge-2"></div>
       </div>
-
-      <div class="shoe-item">
-        <img src="{% static 'shoes/shoes03.png' %}">
-        {{ formfield 'rank3' }}
+      <div class="shoe-item" id="shoe-3" onclick="selectShoe(3)">
+        <img src="{{ static 'shoes/shoes03.png' }}" alt="Style 3">
+        <div class="badge" id="badge-3"></div>
       </div>
-
-      <div class="shoe-item">
-        <img src="{% static 'shoes/shoes04.png' %}">
-        {{ formfield 'rank4' }}
+      <div class="shoe-item" id="shoe-4" onclick="selectShoe(4)">
+        <img src="{{ static 'shoes/shoes04.png' }}" alt="Style 4">
+        <div class="badge" id="badge-4"></div>
       </div>
-
-      <div class="shoe-item">
-        <img src="{% static 'shoes/shoes05.png' %}">
-        {{ formfield 'rank5' }}
+      <div class="shoe-item" id="shoe-5" onclick="selectShoe(5)">
+        <img src="{{ static 'shoes/shoes05.png' }}" alt="Style 5">
+        <div class="badge" id="badge-5"></div>
       </div>
     </div>
 
-    <div style="margin-top:20px;">
-      <button class="next-btn">
-        Suivant
-      </button>
-    </div>
+    <!-- Champs cachés soumis à oTree -->
+    <input type="hidden" name="first_choice"  id="first_choice">
+    <input type="hidden" name="second_choice" id="second_choice">
 
+    <div style="display:none;">{{ next_button }}</div>
+
+    <button type="button" class="confirm-btn" id="confirm-btn" onclick="submitChoice()">
+      ✅ Confirmer mon choix
+    </button>
   </div>
 </div>
+
+<script>
+  let selections = [];   // max 2 valeurs
+
+  function selectShoe(val) {
+    const idx = selections.indexOf(val);
+
+    if (idx !== -1) {
+      // Déjà sélectionné → désélectionner
+      selections.splice(idx, 1);
+    } else {
+      if (selections.length >= 2) return;  // déjà 2 choix
+      selections.push(val);
+    }
+
+    updateUI();
+  }
+
+  function updateUI() {
+    // Réinitialiser tout
+    for (let i = 1; i <= 5; i++) {
+      document.getElementById('shoe-' + i).classList.remove('selected');
+      document.getElementById('badge-' + i).textContent = '';
+    }
+
+    // Appliquer les sélections
+    if (selections[0] !== undefined) {
+      document.getElementById('shoe-'  + selections[0]).classList.add('selected');
+      document.getElementById('badge-' + selections[0]).textContent = '⭐ 1er choix';
+    }
+    if (selections[1] !== undefined) {
+      document.getElementById('shoe-'  + selections[1]).classList.add('selected');
+      document.getElementById('badge-' + selections[1]).textContent = '⭐ 2e choix';
+    }
+
+    // Mettre à jour les champs cachés
+    document.getElementById('first_choice').value  = selections[0] ?? '';
+    document.getElementById('second_choice').value = selections[1] ?? '';
+
+    // Activer le bouton seulement si 2 choix
+    const btn = document.getElementById('confirm-btn');
+    if (selections.length === 2) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  }
+
+  function submitChoice() {
+    if (selections.length < 2) return;
+    document.querySelector('form').submit();
+  }
+</script>
 
 {{ endblock }}
