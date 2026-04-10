@@ -9,7 +9,7 @@ PARTICIPANT_FIELDS = ['treatment','pairs','current_pair_index']
 SESSION_FIELDS = []
 THOUSAND_SEPARATOR = ''
 AUTO_TABULATE_PAYOFFS = True
-ROOMS = [dict(name='survey_101',display_name='epiphanie_boutique')]
+ROOMS = [dict(name='survey_101',display_name='Epiphanie Boutique')]
 
 
 
