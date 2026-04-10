@@ -9,7 +9,10 @@ PARTICIPANT_FIELDS = ['treatment','pairs','current_pair_index']
 SESSION_FIELDS = []
 THOUSAND_SEPARATOR = ''
 AUTO_TABULATE_PAYOFFS = True
-ROOMS = []
+ROOMS = [dict(name='survey_101',display_name='epiphanie_boutique')]
+
+
+
 
 ADMIN_USERNAME = 'admin'
 # for security, best to set admin password in an environment variable
