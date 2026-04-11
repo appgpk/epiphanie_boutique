@@ -156,21 +156,21 @@ class MakeChoiceWithin(Page):
     form_fields = ['choice']
 
     def is_displayed(player):
-        if 'pairs' not in player.participant.vars:
+        if 'pairs_within' not in player.participant.vars:
             treatment = player.participant.vars.get('treatment')
             if treatment is None:
                 return False
             pairs = generate_pairs_for_treatment(treatment)
-            player.participant.vars['pairs'] = pairs
-            player.participant.vars['current_pair_index'] = 0
+            player.participant.vars['pairs_within'] = pairs
+            player.participant.vars['idx_within'] = 0
 
-        idx = player.participant.vars.get('current_pair_index', 0)
-        pairs = player.participant.vars.get('pairs', [])
+        idx = player.participant.vars.get('idx_within', 0)
+        pairs = player.participant.vars.get('pairs_within', [])
         return idx < len(pairs)
 
     def vars_for_template(player):
-        idx = player.participant.vars['current_pair_index']
-        pairs = player.participant.vars['pairs']
+        idx = player.participant.vars['idx_within']
+        pairs = player.participant.vars['pairs_within']
 
         if not pairs or idx >= len(pairs):
             return {}
@@ -189,13 +189,13 @@ class MakeChoiceWithin(Page):
         }
 
     def before_next_page(player, timeout_happened):
-        player.participant.vars['current_pair_index'] += 1
+        player.participant.vars['idx_within'] += 1
 
 
 class End(Page):
     def is_displayed(player):
-        idx = player.participant.vars.get('current_pair_index', 0)
-        pairs = player.participant.vars.get('pairs', [])
+        idx = player.participant.vars.get('idx_within', 0)
+        pairs = player.participant.vars.get('pairs_within', [])
         return idx >= len(pairs)
 
 
